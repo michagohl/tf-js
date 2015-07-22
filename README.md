@@ -1,5 +1,7 @@
 # tf-js
 
+Create tables with pagination and filter functions.
+
 ## Features
 * Filter by Dropdown and Fulltext-Search
 * Pagination (mobile and full)
