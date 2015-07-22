@@ -1,0 +1,80 @@
+<DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>tf-js: Example Autorotating Pages</title>
+    
+    <link rel="stylesheet" type="text/css" href="../css/tf.css" media="all">
+    
+    <style>
+		
+		.tf-container {
+			width: 100%;
+		}
+		
+		.tf-item {
+			width: 100%;
+		}
+		
+		.tf-item > div {
+			display: inline-table;	
+			padding-top: 5px;
+			padding-bottom: 5px;
+		}
+		
+		.tf-row-1, .tf-row-0 {
+			background-color: #fff;	
+		}
+		
+		div.question {
+			width: 40%;	
+			cursor: pointer;
+			font-weight:bold;
+		}
+		
+		div.written {
+			width: 30%;
+			font-size: 10px;
+		}		
+		
+		div.answer {
+			display: none;
+		}
+	</style>
+    
+    <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script src="../tf.js"></script> 
+	
+	
+	
+</head>
+<body>
+	Autorotating the content every 15 sec (data-autorotate = 15).<br><br>
+
+	<div class="tf-parent">
+    	<div class="tf-container">
+            
+            <div class="tf-item" align="center">
+				<h1>Page 1</h1>
+            </div>
+			<div class="tf-item" align="right">
+				<h1>Page 2</h1>
+            </div>
+            <div class="tf-item" align="left">
+				<h1>Page 3</h1>
+            </div>
+            <div class="tf-item" align="center">
+				<h1>Page 4</h1>
+            </div>
+            <div class="tf-item" align="right">
+				<h1>Page 5</h1>
+            </div>
+    
+            <ul class="tf-pagination" data-pagination="1" data-autorotate="15">
+            
+            </ul>
+    	</div>		
+	</div>
+	
+</body>
+</html>

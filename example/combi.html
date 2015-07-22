@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>tf-js: Example 3 different tables on one page</title>
+    
+    <link rel="stylesheet" type="text/css" href="../css/tf.css" media="all">
+    
+    <style>
+		
+		.tf-container {
+			width: 100%;
+		}
+		
+		.tf-item {
+			width: 100%;
+		}
+		
+		.tf-item > div {
+			display: inline-table;	
+			padding-top: 5px;
+			padding-bottom: 5px;
+		}
+		
+		.nobg .tf-row-1 {
+			background-color:#fff;	
+		}
+		
+		div.name {
+			width: 30%;	
+		}
+		
+		div.maxspeed {
+			width: 20%;	
+		}
+		
+		div.fuel {
+			width: 15%;
+		}
+	</style>
+    
+    <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script src="../tf.js"></script>    
+</head>
+<body>
+	You can filter by two different categories. You can also switch pages. When you use a mobile device there are only 4 items per page.<br><br>
+
+	<div class="tf-parent">
+    	<div class="tf-container">
+            <select class="tf-filter" rel="brand">
+                <option value="-1">all</option>
+                <option value="1">Audi</option>
+                <option value="2">VW</option>
+                <option value="3">BMW</option>
+                <option value="4">Renault</option>
+            </select>
+            &nbsp;
+            <select class="tf-filter" rel="fuel">
+                <option value="-1">all</option>
+                <option value="1">Gasoline</option>
+                <option value="2">Diesel</option>
+            </select>
+            <br><br>
+            <div class="tf-item" brand="-1 1" fuel="-1 1">
+                <div class="name">Audi A1</div>
+                <div class="maxspeed">200 km/h</div>
+                <div class="fuel">Gasoline</div>
+                <div class="price">20000 €</div>        
+            </div>
+            <div class="tf-item" brand="-1 1" fuel="-1 2">
+                <div class="name">Audi A2</div>
+                <div class="maxspeed">180 km/h</div>
+                <div class="fuel">Diesel</div>
+                <div class="price">22000 €</div>           
+            </div>
+             <div class="tf-item" brand="-1 1" fuel="-1 2">
+                <div class="name">Audi A3</div>
+                <div class="maxspeed">205 km/h</div>
+                <div class="fuel">Diesel</div>
+                <div class="price">30000 €</div>        
+            </div>
+            <div class="tf-item" brand="-1 1" fuel="-1 1">
+                <div class="name">Audi A8</div>
+                <div class="maxspeed">230 km/h</div>
+                <div class="fuel">Gasoline</div>
+                <div class="price">100000 €</div>           
+            </div>
+            <div class="tf-item" brand="-1 2" fuel="-1 1">
+                <div class="name">BMW i3</div>
+                <div class="maxspeed">150 km/h</div>
+                <div class="fuel">Gasoline</div>
+                <div class="price">40000 €</div>        
+            </div>
+            <div class="tf-item" brand="-1 2" fuel="-1 1">
+                <div class="name">BMW i8</div>
+                <div class="maxspeed">230 km/h</div>
+                <div class="fuel">Gasoline</div>
+                <div class="price">110000 €</div>           
+            </div>
+            <div class="tf-item" brand="-1 2" fuel="-1 2">
+                <div class="name">BMW 8</div>
+                <div class="maxspeed">95 km/h</div>
+                <div class="fuel">Diesel</div>
+                <div class="price">30000 €</div>        
+            </div>
+            <div class="tf-item" brand="-1 3" fuel="-1 1">
+                <div class="name">VW Golf</div>
+                <div class="maxspeed">230 km/h</div>
+                <div class="fuel">Gasoline</div>
+                <div class="price">30000 €</div>           
+            </div>
+            <div class="tf-item" brand="-1 3" fuel="-1 1">
+                <div class="name">VW Touran</div>
+                <div class="maxspeed">250 km/h</div>
+                <div class="fuel">Gasoline</div>
+                <div class="price">80000 €</div>           
+            </div>
+            <div class="tf-item" brand="-1 2" fuel="-1 2">
+                <div class="name">VW up</div>
+                <div class="maxspeed">120 km/h</div>
+                <div class="fuel">Diesel</div>
+                <div class="price">20000 €</div>        
+            </div>
+            <div class="tf-item" brand="-1 3" fuel="-1 2">
+                <div class="name">VW Jetta</div>
+                <div class="maxspeed">190 km/h</div>
+                <div class="fuel">Diesel</div>
+                <div class="price">50000 €</div>           
+            </div>
+    
+    
+    	</div>		
+	</div>
+    <br><br>
+    <div class="tf-parent">
+    	<div class="tf-container">
+            <select class="tf-filter" rel="product">
+                <option value="-1">all</option>
+                <option value="1">Book</option>
+                <option value="2">ePaper</option>
+                <option value="3">Disk</option>
+            </select>
+            &nbsp;
+			<input type="text" placeholder="Fulltext Search" class="tf-search">
+            
+            <br><br>
+            <div class="tf-item" product="-1 1">
+				<div class="question tf-sf">Can I read your book for free?</div>
+				<div class="written">by Paula</div>
+				<div class="answer  tf-sf tf-pagination-close">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</div>
+            </div>
+			<div class="tf-item" product="-1 1">
+				<div class="question tf-sf">Where can I buy your book?</div>
+				<div class="written">by Sigi</div>
+				<div class="answer tf-pagination-close tf-sf" >Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</div>
+            </div>			
+			<div class="tf-item" product="-1 1">
+				<div class="question tf-sf">Is you book paper fairtrade?</div>
+				<div class="written">by Dieter</div>
+				<div class="answer tf-pagination-close tf-sf">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</div>
+            </div>
+    <div class="tf-item" product="-1 3">
+				<div class="question tf-sf">Can I use your disc for free?</div>
+				<div class="written">by Rudi</div>
+				<div class="answer tf-pagination-close tf-sf">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</div>
+            </div>
+			<div class="tf-item" product="-1 3">
+				<div class="question tf-sf">Is there a way to order more the 10 discs?</div>
+				<div class="written">by Paula</div>
+				<div class="answer tf-pagination-close tf-sf" >Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</div>
+            </div>			
+			<div class="tf-item" product="-1 3">
+				<div class="question tf-sf">My disk doesn't work. Can you send me a new one?</div>
+				<div class="written">by Frieda</div>
+				<div class="answer tf-pagination-close tf-sf">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</div>
+            </div>
+    
+            <ul class="tf-pagination" data-pagination="5">
+            
+            </ul>
+    	</div>		
+	</div>
+	<br><br>
+    <div class="tf-parent nobg">
+    	<div class="tf-container">
+            
+            <div class="tf-item" align="center">
+				<h1>Page 1</h1>
+            </div>
+			<div class="tf-item" align="right">
+				<h1>Page 2</h1>
+            </div>
+            <div class="tf-item" align="left">
+				<h1>Page 3</h1>
+            </div>
+            <div class="tf-item" align="center">
+				<h1>Page 4</h1>
+            </div>
+            <div class="tf-item" align="right">
+				<h1>Page 5</h1>
+            </div>
+    
+            <ul class="tf-pagination" data-pagination="1" data-autorotate="15">
+            
+            </ul>
+    	</div>		
+	</div>
+    
+	<script language="javascript">
+		$('.question').on('click' , function()
+		{
+			$('.answer').hide();
+			$(this).parent().find('.answer').show();
+		});
+	</script>
+</body>
+</html>

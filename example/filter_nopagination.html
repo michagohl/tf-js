@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>tf-js: Example Filter #2</title>
+    
+    <link rel="stylesheet" type="text/css" href="../css/tf.css" media="all">
+    
+    <style>
+		
+		.tf-container {
+			width: 100%;
+		}
+		
+		.tf-item {
+			width: 100%;
+		}
+		
+		.tf-item > div {
+			display: inline-table;	
+			padding-top: 5px;
+			padding-bottom: 5px;
+		}
+		
+		div.name {
+			width: 30%;	
+		}
+		
+		div.maxspeed {
+			width: 20%;	
+		}
+		
+		div.fuel {
+			width: 15%;
+		}
+	</style>
+    
+    <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script src="../tf.js"></script>    
+</head>
+<body>
+	You can filter by two different categories. You can also switch pages. When you use a mobile device there are only 4 items per page.<br><br>
+
+	<div class="tf-parent">
+    	<div class="tf-container">
+            <select class="tf-filter" rel="brand">
+                <option value="-1">all</option>
+                <option value="1">Audi</option>
+                <option value="2">VW</option>
+                <option value="3">BMW</option>
+                <option value="4">Renault</option>
+            </select>
+            &nbsp;
+            <select class="tf-filter" rel="fuel">
+                <option value="-1">all</option>
+                <option value="1">Gasoline</option>
+                <option value="2">Diesel</option>
+            </select>
+            <br><br>
+            <div class="tf-item" brand="-1 1" fuel="-1 1">
+                <div class="name">Audi A1</div>
+                <div class="maxspeed">200 km/h</div>
+                <div class="fuel">Gasoline</div>
+                <div class="price">20000 €</div>        
+            </div>
+            <div class="tf-item" brand="-1 1" fuel="-1 2">
+                <div class="name">Audi A2</div>
+                <div class="maxspeed">180 km/h</div>
+                <div class="fuel">Diesel</div>
+                <div class="price">22000 €</div>           
+            </div>
+             <div class="tf-item" brand="-1 1" fuel="-1 2">
+                <div class="name">Audi A3</div>
+                <div class="maxspeed">205 km/h</div>
+                <div class="fuel">Diesel</div>
+                <div class="price">30000 €</div>        
+            </div>
+            <div class="tf-item" brand="-1 1" fuel="-1 1">
+                <div class="name">Audi A8</div>
+                <div class="maxspeed">230 km/h</div>
+                <div class="fuel">Gasoline</div>
+                <div class="price">100000 €</div>           
+            </div>
+            <div class="tf-item" brand="-1 2" fuel="-1 1">
+                <div class="name">BMW i3</div>
+                <div class="maxspeed">150 km/h</div>
+                <div class="fuel">Gasoline</div>
+                <div class="price">40000 €</div>        
+            </div>
+            <div class="tf-item" brand="-1 2" fuel="-1 1">
+                <div class="name">BMW i8</div>
+                <div class="maxspeed">230 km/h</div>
+                <div class="fuel">Gasoline</div>
+                <div class="price">110000 €</div>           
+            </div>
+            <div class="tf-item" brand="-1 2" fuel="-1 2">
+                <div class="name">BMW 8</div>
+                <div class="maxspeed">95 km/h</div>
+                <div class="fuel">Diesel</div>
+                <div class="price">30000 €</div>        
+            </div>
+            <div class="tf-item" brand="-1 3" fuel="-1 1">
+                <div class="name">VW Golf</div>
+                <div class="maxspeed">230 km/h</div>
+                <div class="fuel">Gasoline</div>
+                <div class="price">30000 €</div>           
+            </div>
+            <div class="tf-item" brand="-1 3" fuel="-1 1">
+                <div class="name">VW Touran</div>
+                <div class="maxspeed">250 km/h</div>
+                <div class="fuel">Gasoline</div>
+                <div class="price">80000 €</div>           
+            </div>
+            <div class="tf-item" brand="-1 2" fuel="-1 2">
+                <div class="name">VW up</div>
+                <div class="maxspeed">120 km/h</div>
+                <div class="fuel">Diesel</div>
+                <div class="price">20000 €</div>        
+            </div>
+            <div class="tf-item" brand="-1 3" fuel="-1 2">
+                <div class="name">VW Jetta</div>
+                <div class="maxspeed">190 km/h</div>
+                <div class="fuel">Diesel</div>
+                <div class="price">50000 €</div>           
+            </div>
+    
+    
+    	</div>		
+	</div>
+</body>
+</html>

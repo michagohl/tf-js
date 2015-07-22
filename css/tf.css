@@ -1,0 +1,57 @@
+/*
+ *
+ * Copyright (c) 2015 Michael Gohl (http://www.gohl.tk)
+ * Licensed under GPL (http://www.opensource.org/licenses/gpl-license.php)
+ *
+ * Version 0.2
+ *
+ */
+
+.tf-parent {
+	
+}
+
+.tf-row-1 {
+	background-color: rgba(204,204,204,0.5)
+}
+
+.tf-row-0 {
+	background-color: #FFF;
+}
+
+.tf-filter > option[disabled=disabled] {
+	color: #CCC;	
+}
+
+ul.tf-pagination {
+	text-align:center;	
+	list-style:none;
+	margin-top: 15px;
+	width: 100%;
+}
+
+ul.tf-pagination > li {
+	display: inline-block;
+	padding: 5px;
+	padding-left: 10px;
+	padding-right: 10px;
+	margin-bottom: 4px;
+	cursor: pointer;
+	border: 1px solid rgba(190, 200, 210, 0.5);
+	border-radius: 3px;
+	margin-left: 3px;
+	margin-right: 3px;
+	box-shadow: 1px 1px 1px rgba(190, 200, 210, 0.25);
+}
+
+ul.tf-pagination > li.tf-pagination-switch-move {
+	
+}
+
+ul.tf-pagination > li:hover {
+	text-decoration:underline;	
+}
+
+ul.tf-pagination > li.tf-pagination-current {
+	font-weight: bold;	
+}
