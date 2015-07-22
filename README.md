@@ -20,5 +20,5 @@ If set then rotation in seconds
 
 ## Demo
 
-https://github.com/michagohl/tf-js/example/index.html
+http://ruditherednose.gohl.tk/tf-js/example/index.html
 
