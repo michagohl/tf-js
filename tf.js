@@ -91,9 +91,9 @@ $(function(factory)
 		}
 	}
 	
-	var build = function (request)
+	var build = function (target, request)
 	{
-		targets.each(function()
+		target.each(function()
 		{
 			var current_pagination = $(this).find('.tf-pagination');
 			if (current_pagination !== undefined) 
@@ -143,6 +143,7 @@ $(function(factory)
 							return parseInt($(this).attr('data-page'));
 						}).get());
 						
+
 						if (c + d < 0) 	d = m;	
 						else if (c + d > m)	d = 0;	
 						else d = c + d;	
@@ -244,7 +245,7 @@ $(function(factory)
 			parent.find('.tf-error').show();
 		}
 		
-		build(request);
+		build($(parent), request);
 	}
 	
 	var reduce = function(parent, request)
@@ -283,7 +284,7 @@ $(function(factory)
 	
 		
 	// Build	
-	build();
+	build(targets);
 	
 	// Bind Filter
 	targets.find('.tf-filter').on('change' ,function()
