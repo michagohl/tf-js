@@ -3,7 +3,7 @@
  * Copyright (c) 2015 Michael Gohl (http://www.gohl.tk)
  * Licensed under GPL (http://www.opensource.org/licenses/gpl-license.php)
  *
- * Version 0.2
+ * Version 0.3
  *
  */
 
@@ -193,7 +193,7 @@ $(function(factory)
 			
 			parent.find('.tf-item, .tf-hidden-item').each(function()
 			{	
-				if ($(this).attr(option).split(" ").indexOf(value) < 0)
+				if ($(this).attr(option).split(" ").indexOf(value) < 0 && value != "-1")
 				{
 					$(this).removeClass('tf-item');
 					$(this).addClass('tf-hidden-item');
@@ -267,6 +267,7 @@ $(function(factory)
 				{
 					d.find("option[value='"+value+"']").removeAttr('disabled');
 				});
+				d.find("option[value='-1']").removeAttr('disabled');
 			}
 		});
 	}
