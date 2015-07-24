@@ -11,7 +11,7 @@ $(function(factory)
 {
 	var targets = $('.tf-parent'),
 		auto_rotate = new Array(),
-		interval = null,
+		interval = new Array(),
 		max_per_page = 10,
 		responsive_size = 840,
 		reduce_after_search = 0,
@@ -58,14 +58,15 @@ $(function(factory)
 			parent.children('.tf-item').eq(i).show();
 		}
 		
-		clearInterval(interval);
+		clearInterval(interval[parent]);
 		
-		interval = setInterval(function()
+		interval[parent] = setInterval(function()
 		{
 			var current = parent.height();
 			
 			if (current < parent.children('.tf-item').height())
-			{				
+			{	
+				clearInterval(interval[parent]);			
 				return;	
 			}
 			else
