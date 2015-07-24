@@ -51,16 +51,11 @@ $(function(factory)
 		
 		page = parseInt(page);
 				
-		for (i = 0; i < count; i++)
+		parent.children('.tf-item').hide();		
+		
+		for (i = page*per_page; i < ((page*per_page)+per_page); i++)
 		{
-			if (i >= page*per_page && i < ((page*per_page)+per_page))
-			{
-				parent.children('.tf-item').eq(i).show();
-			}
-			else
-			{
-				parent.children('.tf-item').eq(i).hide();	
-			}
+			parent.children('.tf-item').eq(i).show();
 		}
 		
 		clearInterval(interval);
