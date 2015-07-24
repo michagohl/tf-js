@@ -19,6 +19,10 @@
 	background-color: #FFF;
 }
 
+.tf-error {
+	display: none;
+}
+
 .tf-filter > option[disabled=disabled] {
 	color: #CCC;	
 }
