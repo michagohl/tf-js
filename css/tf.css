@@ -3,7 +3,7 @@
  * Copyright (c) 2015 Michael Gohl (http://www.gohl.tk)
  * Licensed under GPL (http://www.opensource.org/licenses/gpl-license.php)
  *
- * Version 0.3
+ * Version 0.4
  *
  */
 
@@ -25,6 +25,16 @@
 
 .tf-filter > option[disabled=disabled] {
 	color: #CCC;	
+}
+
+.tf-item-container {
+	overflow: hidden;
+	position:relative;
+}
+
+.tf-block-next {
+	position: absolute;
+	top: 0;	
 }
 
 ul.tf-pagination {
