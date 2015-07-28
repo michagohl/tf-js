@@ -76,6 +76,11 @@ $(function(factory)
 		}		
 	}
 	
+	var add_clear = function(item)
+	{
+		item.append('<div class="tf-clear" style="clear:both;"><!-- --></div>');	
+	}
+	
 	var switch_page = function (parent, page, auto)
 	{		
 		var count = parent.find('.tf-item').length;	
@@ -100,6 +105,7 @@ $(function(factory)
 		var cend = parent.find('.tf-item').index(parent.find('.tf-item:visible').last());
 		
 		parent.find('.tf-item').wrapAll('<div class="tf-item-container"></div>');
+		add_clear(parent.find('.tf-item-container'));
 		parent.find('.tf-item-container').css('min-height',parent.find('.tf-item-container').eq(0).height()); 
 		parent.find('.tf-item-container').css('max-height',parent.find('.tf-item-container').eq(0).height());
 		// Animation
@@ -123,7 +129,8 @@ $(function(factory)
 			});
 			
 			switch_page_end(parent, page, auto, height);
-		}	
+		}		
+		parent.find('.tf-clear').remove();	
 	}
 	
 	var get_direction = function (cstart, cend, nstart, nend, count)
@@ -144,7 +151,7 @@ $(function(factory)
 			parent.find('.tf-item-container').css('max-height', 0);
 			parent.find('.tf-item-container').animate({'min-height': "-="+Math.abs(tHeight)},"slow", null, function()
 			{
-				parent.find('.tf-item-container').eq(0).replaceWith(parent.find('.tf-item-container').eq(0).html());	
+				parent.find('.tf-item-container').eq(0).replaceWith(parent.find('.tf-item-container').eq(0).html());
 			});
 		}
 		else
@@ -152,7 +159,7 @@ $(function(factory)
 			parent.find('.tf-item-container').css('min-height', 0);				
 			parent.find('.tf-item-container').animate({'max-height': "+="+tHeight},"slow", null, function()
 			{
-				parent.find('.tf-item-container').eq(0).replaceWith(parent.find('.tf-item-container').eq(0).html());	
+				parent.find('.tf-item-container').eq(0).replaceWith(parent.find('.tf-item-container').eq(0).html());				
 			});
 		}
 		
@@ -187,6 +194,8 @@ $(function(factory)
 		height = $('#'+current).height(),
 		_height = 0,
 		props = {};
+		add_clear($('#'+next));
+		add_clear($('#'+current));
 		$('#'+next).width(width);
 		$('#'+current).width(width);
 		parent.find('.tf-item-container').css('max-width', width);
