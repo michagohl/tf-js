@@ -135,7 +135,9 @@ $(function(factory)
 			
 			switch_page_end(parent, page, auto, height);
 		}		
-		parent.find('.tf-clear').remove();	
+		parent.find('.tf-clear').remove();
+		
+		return true;	
 	}
 	
 	var get_direction = function (cstart, cend, nstart, nend, count)
@@ -299,10 +301,11 @@ $(function(factory)
 					
 					parent.find('.tf-pagination-switch').on('click', function()
 					{						
-						parent.find('.tf-pagination-switch-move, .tf-pagination-switch').addClass('tf-switch-block');
-						switch_page(parent, $(this).attr('data-page'));
-						current_pagination.children('li').removeClass("tf-pagination-current");
-						$(this).addClass("tf-pagination-current");
+						if (switch_page(parent, $(this).attr('data-page')))
+						{
+							current_pagination.children('li').removeClass("tf-pagination-current");
+							$(this).addClass("tf-pagination-current");
+						}
 						return false;
 					});
 					
