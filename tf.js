@@ -111,6 +111,9 @@ $(function(factory)
 		var cstart = tfitem.index(parent.find('.tf-item:visible').first());
 		var cend = tfitem.index(parent.find('.tf-item:visible').last());
 		
+		if (cstart == nstart && cend == nend-1)
+			return false;
+		
 		tfitem.wrapAll('<div class="tf-item-container"></div>');
 		var tfitemcon = parent.find('.tf-item-container');
 		add_clear(tfitemcon);
@@ -173,7 +176,7 @@ $(function(factory)
 				tfitemcon.children().unwrap();	
 			});
 		}
-		else
+		else if (tHeight > 0)
 		{
 			tfitemcon.css('min-height', 0);				
 			tfitemcon.animate({'max-height': "+="+tHeight},"slow", null, function()
