@@ -114,8 +114,10 @@ $(function(factory)
 		tfitem.wrapAll('<div class="tf-item-container"></div>');
 		var tfitemcon = parent.find('.tf-item-container');
 		add_clear(tfitemcon);
-		tfitemcon.css('min-height',tfitemcon.eq(0).height()); 
-		tfitemcon.css('max-height',tfitemcon.eq(0).height());
+		console.log($(tfitemcon.get(0)).height());
+		
+		tfitemcon.css('min-height',$(tfitemcon.get(0)).height()); 
+		tfitemcon.css('max-height',$(tfitemcon.get(0)).height());
 		// Animation
 		if (parent.find('.tf-pagination').attr('data-animation') !== undefined && parent.find('.tf-pagination').attr('data-animation') == "1")
 		{						
@@ -124,17 +126,12 @@ $(function(factory)
 		else
 		{		
 			tfitem.hide();		
+			tfitem.slice(nstart, nend).show();
 			
-			for (i = nstart; i < nend; i++)
-			{
-				tfitem.eq(i).show();
-			}
-			
-			var height = 0;
-			parent.find('.tf-item:visible').each(function()
-			{
-				height += $(this).height();
-			});
+			parent.find('.tf-item:visible').wrapAll('<div class="tf-height-check"></div>');
+			add_clear(parent.find('.tf-height-check'));			
+			var height = parent.find('.tf-height-check').height();
+			parent.find('.tf-height-check').children().unwrap();
 			
 			switch_page_end(parent, page, auto, height);
 		}		
@@ -165,13 +162,13 @@ $(function(factory)
 	{
 		var tfitemcon = parent.find('.tf-item-container');
 		
-		var tHeight = (tfitemcon.eq(0).height()-height)*-1;
+		var tHeight = ($(tfitemcon.get(0)).height()-height)*-1;
 		if (tHeight < 0)
 		{
 			tfitemcon.css('max-height', 0);
 			tfitemcon.animate({'min-height': "-="+Math.abs(tHeight)},"slow", null, function()
 			{
-				tfitemcon.replaceWith(tfitemcon.eq(0).html());	
+				tfitemcon.children().unwrap();	
 			});
 		}
 		else
@@ -179,7 +176,7 @@ $(function(factory)
 			tfitemcon.css('min-height', 0);				
 			tfitemcon.animate({'max-height': "+="+tHeight},"slow", null, function()
 			{
-				tfitemcon.replaceWith(tfitemcon.eq(0).html());					
+				tfitemcon.children().unwrap();					
 			});
 		}
 		
@@ -243,13 +240,15 @@ $(function(factory)
 	{		
 		var list = parent.find('.tf-item');	
 		var name = 'tf-block-'+get_anchor_name(parent)+'-'+parent.find('.tf-block').length;
-		parent.find('.tf-item').slice(start, end+1).wrapAll('<div id="'+name+'" class="tf-block"></div>');
+		parent.find('.tf-item').slice(start, end+1).addClass('tf-item-block');
+		parent.find('.tf-item-block').wrapAll('<div id="'+name+'" class="tf-block"></div>');
+		parent.find('.tf-item-block').removeClass('tf-item-block');
 		return name;
 	}
 	
 	var remove_block_items = function (name)
 	{
-		$('#'+name).replaceWith($('#'+name).html());	
+		$('#'+name).children().unwrap();	
 	}
 	
 	var build = function (target, request)
