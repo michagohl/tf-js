@@ -11,7 +11,7 @@ $(function(factory)
 {
 	var targets = $('.tf-parent'),
 		auto_rotate = new Array(),
-		interval = new Array(),
+		config = new Array(),
 		max_per_page = 10,
 		responsive_size = 840,
 		reduce_after_search = 0,
@@ -82,8 +82,15 @@ $(function(factory)
 	}
 	
 	var switch_page = function (parent, page, auto)
-	{		
-		var count = parent.find('.tf-item').length;	
+	{	
+		if (parent.find(":animated").length != 0)
+		{
+			return false;
+		}
+		
+		var tfitem = parent.find('.tf-item');
+		
+		var count = tfitem.length;		
 		
 		if (auto == true)
 		{
@@ -101,25 +108,26 @@ $(function(factory)
 		if (nend > count) nend = count;
 		var nstart = page*per_page;
 		
-		var cstart = parent.find('.tf-item').index(parent.find('.tf-item:visible').first());
-		var cend = parent.find('.tf-item').index(parent.find('.tf-item:visible').last());
+		var cstart = tfitem.index(parent.find('.tf-item:visible').first());
+		var cend = tfitem.index(parent.find('.tf-item:visible').last());
 		
-		parent.find('.tf-item').wrapAll('<div class="tf-item-container"></div>');
-		add_clear(parent.find('.tf-item-container'));
-		parent.find('.tf-item-container').css('min-height',parent.find('.tf-item-container').eq(0).height()); 
-		parent.find('.tf-item-container').css('max-height',parent.find('.tf-item-container').eq(0).height());
+		tfitem.wrapAll('<div class="tf-item-container"></div>');
+		var tfitemcon = parent.find('.tf-item-container');
+		add_clear(tfitemcon);
+		tfitemcon.css('min-height',tfitemcon.eq(0).height()); 
+		tfitemcon.css('max-height',tfitemcon.eq(0).height());
 		// Animation
-		if (parent.find('.tf-pagination').attr('data-animation') !== undefined)
+		if (parent.find('.tf-pagination').attr('data-animation') !== undefined && parent.find('.tf-pagination').attr('data-animation') == "1")
 		{						
 			animate(parent, page, auto, 'scroller', cstart, cend, nstart, nend); 			
 		}
 		else
 		{		
-			parent.find('.tf-item').hide();		
+			tfitem.hide();		
 			
 			for (i = nstart; i < nend; i++)
 			{
-				parent.find('.tf-item').eq(i).show();
+				tfitem.eq(i).show();
 			}
 			
 			var height = 0;
@@ -134,45 +142,58 @@ $(function(factory)
 	}
 	
 	var get_direction = function (cstart, cend, nstart, nend, count)
-	{		
-		var diff1 = cend - nstart;
-		var diff2 = cstart - nend;		
-		if (Math.abs(diff1) < Math.abs(diff2))
-			return 'left';
+	{	
+		if (cend == cstart && nstart == nend)
+		{
+			if (cstart < nstart)
+				return 'left';
+			else
+				return 'right';
+		}
 		else
-			return 'right';			
+		{
+			var diff1 = cend - nstart;
+			var diff2 = cstart - nend;		
+			if (Math.abs(diff1) < Math.abs(diff2))
+				return 'left';
+			else
+				return 'right';			
+		}
 	}
 	
 	var switch_page_end = function (parent, page, auto, height)
 	{
-		var tHeight = (parent.find('.tf-item-container').eq(0).height()-height)*-1;
+		var tfitemcon = parent.find('.tf-item-container');
+		
+		var tHeight = (tfitemcon.eq(0).height()-height)*-1;
 		if (tHeight < 0)
 		{
-			parent.find('.tf-item-container').css('max-height', 0);
-			parent.find('.tf-item-container').animate({'min-height': "-="+Math.abs(tHeight)},"slow", null, function()
+			tfitemcon.css('max-height', 0);
+			tfitemcon.animate({'min-height': "-="+Math.abs(tHeight)},"slow", null, function()
 			{
-				parent.find('.tf-item-container').eq(0).replaceWith(parent.find('.tf-item-container').eq(0).html());
+				tfitemcon.replaceWith(tfitemcon.eq(0).html());	
 			});
 		}
 		else
 		{
-			parent.find('.tf-item-container').css('min-height', 0);				
-			parent.find('.tf-item-container').animate({'max-height': "+="+tHeight},"slow", null, function()
+			tfitemcon.css('min-height', 0);				
+			tfitemcon.animate({'max-height': "+="+tHeight},"slow", null, function()
 			{
-				parent.find('.tf-item-container').eq(0).replaceWith(parent.find('.tf-item-container').eq(0).html());				
+				tfitemcon.replaceWith(tfitemcon.eq(0).html());					
 			});
 		}
 		
-		if (parent.children('.tf-pagination').attr('data-anchor') == "1")
+		if (parent.find('.tf-pagination').attr('data-anchor') == "1")
 			set_anchor(parent, page);
 		
-		if (parent.children('.tf-pagination').attr('data-autorotate') !== undefined)
-		{			
-			var next_page = 0;
+		if (parent.find('.tf-pagination').attr('data-autorotate') !== undefined)
+		{		
+			var count = parent.find('.tf-item').length,
+			next_page = 0;
 			if (count > page+1)
 				next_page = page+1;
 							
-			auto_rotate(parent.children('.tf-pagination'), parent, next_page);
+			auto_rotate(parent.find('.tf-pagination'), parent, next_page);
 		}
 	}
 	
@@ -180,13 +201,13 @@ $(function(factory)
 	{
 		var id = 1;
 		targets.each(function()
-		{
+		{		
 			$(this).attr("data-tf-id", (id++));
 		});
 	}
 	
 	var animate = function (parent, page, auto, type, cstart, cend, nstart, nend)
-	{	
+	{			
 		var next = block_items(parent, nstart, nend-1),
 		current = block_items(parent, cstart, cend),					
 		direction = get_direction(cstart, cend, nstart, nend-1, $('.tf-item').length-1),
@@ -206,7 +227,7 @@ $(function(factory)
 		$('#'+next).css('margin-left', ((direction == 'right')?-1*width:width));
 		
 		props['margin-left'] = ((direction == 'right')?'+':'-')+'='+width+'px';
-				
+			
 		parent.find('.tf-block').animate(props, 'slow', null, function()
 		{
 			$('#'+current).find('.tf-item').hide();
@@ -215,6 +236,7 @@ $(function(factory)
 			
 			switch_page_end(parent, page, auto, _height);
 		}); 	
+		
 	}
 	
 	var block_items = function (parent, start, end)
@@ -240,7 +262,7 @@ $(function(factory)
 			{
 				current_pagination.html('');
 				
-				var parent = current_pagination.parent();				
+				var parent = $(this);				
 				var count = $(this).find('.tf-item').length;				
 				var per_page = get_max_per_page(parent);
 				var current_page = 0;
@@ -277,7 +299,8 @@ $(function(factory)
 					}				
 					
 					parent.find('.tf-pagination-switch').on('click', function()
-					{					
+					{						
+						parent.find('.tf-pagination-switch-move, .tf-pagination-switch').addClass('tf-switch-block');
 						switch_page(parent, $(this).attr('data-page'));
 						current_pagination.children('li').removeClass("tf-pagination-current");
 						$(this).addClass("tf-pagination-current");
@@ -285,7 +308,7 @@ $(function(factory)
 					});
 					
 					parent.find('.tf-pagination-switch-move').on('click', function()
-					{
+					{	
 						var d = parseInt($(this).attr('data-direction'));
 						var c = parseInt($(this).parent().children('.tf-pagination-current').attr('data-page'));
 						var m = Math.max.apply(Math, $(this).parent().children('.tf-pagination-switch').map(function()
@@ -298,7 +321,8 @@ $(function(factory)
 						else if (c + d > m)	d = 0;	
 						else d = c + d;	
 						
-						switch_page($(this).parent().parent(), d, true);						
+						switch_page($(this).parent().parent(), d, true);
+						
 					});
 					
 					current_pagination.show();
@@ -453,5 +477,6 @@ $(function(factory)
 		search($(this).parents('.tf-parent').first(), $(this));
 		return false;
 	});
+	
 	
 });
