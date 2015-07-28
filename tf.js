@@ -184,6 +184,8 @@ $(function(factory)
 				tfitemcon.children().unwrap();					
 			});
 		}
+		else
+			tfitemcon.children().unwrap();	
 		
 		if (parent.find('.tf-pagination').attr('data-anchor') == "1")
 			set_anchor(parent, page);
