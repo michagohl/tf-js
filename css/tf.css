@@ -32,6 +32,10 @@
 	position:relative;
 }
 
+.tf-height-check {
+	overflow: auto;	
+}
+
 .tf-block-next {
 	position: absolute;
 	top: 0;	
