@@ -467,23 +467,37 @@ $(function(factory)
 		});
 	}
 	
+	var load = function(targets)
+	{
+		// Build
+		pre_build();	
+		build(targets);
 		
-	// Build
-	pre_build();	
-	build(targets);
-	
-	// Bind Filter
-	targets.find('.tf-filter').on('change' ,function()
+		// Bind Filter
+		targets.find('.tf-filter').on('change' ,function()
+		{
+			search($(this).parents('.tf-parent').first(), $(this));
+			return false;
+		});
+		
+		targets.find('.tf-search').on('keyup', function()
+		{
+			search($(this).parents('.tf-parent').first(), $(this));
+			return false;
+		});		
+	}
+		
+	$.fn.tf = function()
 	{
-		search($(this).parents('.tf-parent').first(), $(this));
-		return false;
-	});
+		var target = $(this).find('.tf-parent');
+		
+		if (target.length > 0)
+			load(target);	
+	}
 	
-	targets.find('.tf-search').on('keyup', function()
+	$(document).ready(function() 
 	{
-		search($(this).parents('.tf-parent').first(), $(this));
-		return false;
+		load(targets);
 	});
-	
 	
 });
